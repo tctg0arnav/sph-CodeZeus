@@ -1,7 +1,32 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
-
+import PyPDF2
 app = Flask(__name__) 
+
+pdfFileObj = open('tut.pdf', 'rb') 
+pdfReader = PyPDF2.PdfFileReader(pdfFileObj) 
+pageObj = pdfReader.getPage(0) 
+pdf_0 = pageObj.extractText()
+lines = pdf_0.splitlines()
+final = []
+for i in lines:
+    try:
+    #if i starts with a digit then print line
+        if i[0].isdigit():
+            if i[1] == '.':
+                final.append(i)
+        elif len(final) != 0 and i[0].isalpha():
+            final[-1] += ' ' + i
+        elif i[0] == ' ':
+            if i[1].isdigit():
+                if i[2] == '.':
+                    final.append(i)
+            elif len(final) != 0 and i[1].isalpha():
+                final[-1] += ' ' + i
+        else:
+            pass
+    except:
+        pass
 
 # Database configuration
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
@@ -40,7 +65,15 @@ def login_post():
         return 'Incorrect username or password.'
 
 #display all questions
-@app.route(f'/questions/<int:index>')
+@app.route('/questions/<int:index>')
 def all_questions(index):
     questions = Ques.query.all()
     return questions[index].question
+
+@app.route('/ques/')
+def quest():
+    return lines
+
+@app.route('/ques/<int:index>')
+def ques(index):
+    return final[index] 
