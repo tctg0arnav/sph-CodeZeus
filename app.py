@@ -1,9 +1,9 @@
-from flask import Flask, render_template, request
+from flask import Flask, redirect, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 import PyPDF2
 app = Flask(__name__) 
 
-pdfFileObj = open('tut.pdf', 'rb') 
+pdfFileObj = open('tut2.pdf', 'rb') 
 pdfReader = PyPDF2.PdfFileReader(pdfFileObj) 
 pageObj = pdfReader.getPage(0) 
 pdf_0 = pageObj.extractText()
@@ -47,7 +47,7 @@ class Ques(db.Model):
 
 @app.route('/')
 def index():
-    return "render_template('index.html')"
+    return render_template('homepage.html')
 
 @app.route('/login')
 def login():
@@ -58,11 +58,20 @@ def login_post():
     email = request.form['email']
     password = request.form['password']
     if email == 'iam@teacher.com' and password == 'teacher':
-        return 'Welcome to teacher dashboard'
+        return redirect('/dashboard')
     elif email == 'iam@student.com' and password == 'student':
-        return 'Welcome to student dashboard'
+        return redirect('/dashboard')
     else:
         return 'Incorrect username or password.'
+
+#route Dashboard
+@app.route('/dashboard')
+def dashboard():
+    return render_template('dashboard.html')
+#route practice
+@app.route('/practice')
+def practice():
+    return render_template('practice.html')
 
 #display all questions
 @app.route('/questions/<int:index>')
