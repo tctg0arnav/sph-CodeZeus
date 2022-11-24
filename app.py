@@ -76,4 +76,7 @@ def quest():
 
 @app.route('/ques/<int:index>')
 def ques(index):
-    return final[index] 
+    try:
+        return final[index] 
+    except:
+        return "No more questions"
