@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: row;
+}
+
+/* Splits the screen */
+.split {
+    height: 100%;
+    width: 80%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+/* Control the left side */
+.left-section {
+    left: 0;
+    background-color: #0D0017;
+    color: white;
+}
+
+
+
+.left-top {
+    display: flex;
+    flex-direction: row;
+    margin-top: 2%;
+}
+
+.left-logo {
+    margin-right: 2%;
+    margin-left: 2%;
+    height: 40px;
+    width: 40px;
+}
+.left-main-heading{
+    font-size: 22px;
+    color: white;
+    margin-top: 0.5%;
+}
+.left-content{
+    margin-left: 3%;
+    margin-top: 5%;
+}
+.left-content-item{
+    list-style: none;
+    margin-bottom: 1%;
+}
+.left-bottom{
+    bottom: 0px;
+    position: fixed;
+    margin-left: 3%;
+}
+
+/* Control the right side */
+.right-section {
+    right: 0;
+    background: rgb(206, 159, 252);
+    background: linear-gradient(187deg, rgba(206, 159, 252, 1) 35%, rgba(115, 103, 240, 1) 100%);
+    color: #0D0017;
+}
+.right-top{
+    margin-left: 41%;
+    margin-top: -1%;
+}
+.right-heading{
+    font-size: 18px;
+    font-weight: 600;
+}
+.right-userId-img{
+    height: 8%;
+    width: 8%;
+}
+.right-userId{
+    display: flex;
+    flex-direction: row;
+    margin-left: 10%;
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 4%;
+}
+.right-userId-text{
+    margin-left: 5%;
+    margin-top: -0.2%;
+}
+.right-userId-name{
+    margin-bottom: -15px;
+}
+.right-hr{
+    border: none;
+    height: 1.5px;
+    background-color: black;
+    width: 90%;
+    margin-top: 2%;
+}
+.right-middle{
+    display: flex;
+    flex-direction: row;
+}
+.middle-left{
+margin-left: 8%;
+font-size: 17px;
+font-weight: 580;
+}
+.middle-left-img{
+    margin-left: 75%;
+    margin-top: 17px;
+}
+.right-cards{
+    margin-top: 5%;
+    display: flex;
+    flex-direction: row;
+}
+.subject-card{
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    height: 10%;
+    width: 15%;
+    color: white;
+    background-color: #0D0017;
+    margin-left: 5%;
+    border-radius: 20px;
+}
+.subject-card-text{
+    margin-top: 0%;
+    margin-left: 10px;
+}
+.subject-card-heading{
+    align-self: center;
+    border-bottom: 1px solid white;
+}
+.dashboard-link{
+    text-decoration: none;
+    color: aliceblue;
+}
