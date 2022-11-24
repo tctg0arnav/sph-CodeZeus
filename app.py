@@ -1,5 +1,24 @@
 from flask import Flask, render_template, request
-app = Flask(__name__)
+from flask_sqlalchemy import SQLAlchemy
+
+app = Flask(__name__) 
+
+# Database configuration
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['SQLALCHEMY_ECHO'] = True
+db = SQLAlchemy(app)
+question = ""
+answer = ""
+# Database model
+class Ques(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    course = db.Column(db.String(80), nullable=False)
+    topic = db.Column(db.String(80), nullable=False)
+    question = db.Column(db.String(200), nullable=False)
+    answer = db.Column(db.String(200), nullable=False)
+
+    def __repr__(self):
+        return '<Ques %r>' % self.id
 
 @app.route('/')
 def index():
@@ -19,3 +38,9 @@ def login_post():
         return 'Welcome to student dashboard'
     else:
         return 'Incorrect username or password.'
+
+#display all questions
+@app.route(f'/questions/<int:index>')
+def all_questions(index):
+    questions = Ques.query.all()
+    return questions[index].question
